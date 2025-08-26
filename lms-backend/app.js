@@ -3,7 +3,7 @@ import { config } from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
-import errorMiddleware from './middlewares/error.middleware.js';
+import errorMiddleware from './server/middlewares/error.middleware.js';
 
 // Initialize dotenv immediately after imports
 config();
@@ -30,10 +30,10 @@ app.get('/ping', (_req, res) => {
 });
 
 // Import all routes
-import userRoutes from './routes/user.routes.js';
-import courseRoutes from './routes/course.routes.js';
-import paymentRoutes from './routes/payment.routes.js';
-import miscRoutes from './routes/miscellaneous.routes.js';
+import userRoutes from './server/routes/user.routes.js';
+import courseRoutes from './server/routes/course.routes.js';
+import paymentRoutes from './server/routes/payment.routes.js';
+import miscRoutes from './server/routes/miscellaneous.routes.js';
 
 app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/courses', courseRoutes);
