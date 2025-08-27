@@ -280,7 +280,7 @@ export const resetPassword = asyncHandler(async (req, res, next) => {
   // If not found or expired send the response
   if (!user) {
     return next(
-      new AppError('Token is invalid or expired, please try again', 400)
+      new appError('Token is invalid or expired, please try again', 400)
     );
   }
 
@@ -314,7 +314,7 @@ export const changePassword = asyncHandler(async (req, res, next) => {
   // Check if the values are there or not
   if (!oldPassword || !newPassword) {
     return next(
-      new AppError('Old password and new password are required', 400)
+      new appError('Old password and new password are required', 400)
     );
   }
 
@@ -323,7 +323,7 @@ export const changePassword = asyncHandler(async (req, res, next) => {
 
   // If no user then throw an error message
   if (!user) {
-    return next(new AppError('Invalid user id or user does not exist', 400));
+    return next(new appError('Invalid user id or user does not exist', 400));
   }
 
   // Check if the old password is correct
@@ -331,7 +331,7 @@ export const changePassword = asyncHandler(async (req, res, next) => {
 
   // If the old password is not valid then throw an error message
   if (!isPasswordValid) {
-    return next(new AppError('Invalid old password', 400));
+    return next(new appError('Invalid old password', 400));
   }
 
   // Setting the new password
@@ -362,7 +362,7 @@ export const updateUser = asyncHandler(async (req, res, next) => {
   const user = await User.findById(id);
 
   if (!user) {
-    return next(new AppError('Invalid user id or user does not exist'));
+    return next(new appError('Invalid user id or user does not exist'));
   }
 
   if (fullName) {
@@ -394,7 +394,7 @@ export const updateUser = asyncHandler(async (req, res, next) => {
       }
     } catch (error) {
       return next(
-        new AppError(error || 'File not uploaded, please try again', 400)
+        new appError(error || 'File not uploaded, please try again', 400)
       );
     }
   }
